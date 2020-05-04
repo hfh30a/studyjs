@@ -34,49 +34,20 @@ function createNode() {
     const id = "data" + getFieldId(data);
     div.setAttribute("id", id);
     data.appendChild(div);
-    insertField(div);
-    setButtonField(div,id);
+    insertField(div, id);
 }
 
-function insertField(div) {
-    let label = document.createElement("label");
-    label.innerText = "名前 : "
-    div.appendChild(label);
-    let span = document.createElement("span");
-    span.innerText = document.getElementById("username").value;
-    span.setAttribute("class", "name");
-    div.appendChild(span);
-    label = document.createElement("label");
-    label.innerText = " 年齢 : "
-    div.appendChild(label);
-    span = document.createElement("span");
-    span.innerText = document.getElementById("age").value;
-    span.setAttribute("class", "age");
-    div.appendChild(span);
-    if(document.getElementById("remark").value !== "") {
-        label = document.createElement("label");
-        label.innerText = " 備考 : "
-        div.appendChild(label);
-        span = document.createElement("span");
-        span.innerText = document.getElementById("remark").value;
-        span.setAttribute("class", "remark");
-        div.appendChild(span);
+function insertField(div, id) {
+    div.innerHTML += "<label>名前 : </label>";
+    div.innerHTML += '<span class="name">' + document.getElementById("username").value + "</span>";
+    div.innerHTML += "<label> 年齢 : </label>";
+    div.innerHTML += '<span class="age">' + document.getElementById("age").value + "</span>";
+    if (document.getElementById("remark").value !== "") {
+        div.innerHTML += "<label> 備考 : </label>";
+        div.innerHTML += '<span class="remark">' + document.getElementById("remark").value + "</span>";
     }
-}
-
-function setButtonField(div,id) {
-    var input = document.createElement("input");
-    input.setAttribute("type", "button");
-    input.name = "button";
-    input.value = "編集";
-    input.setAttribute('onclick', "editData('" + id + "');");
-    div.appendChild(input);
-    input = document.createElement("input");
-    input.setAttribute("type", "button");
-    input.name = "button";
-    input.value = "削除";
-    input.setAttribute('onclick', "deleteData('" + id + "');");
-    div.appendChild(input);
+    div.innerHTML += '<input type="button" name="button" value="編集" onclick="editData(' + "'" + id + "'" + ');">';
+    div.innerHTML += '<input type="button" name="button" value="削除" onclick="deleteData(' + "'" + id + "'" + ');">';
 }
 
 function editData(id) {
@@ -85,7 +56,7 @@ function editData(id) {
 
 function deleteData(id) {
     const result = window.confirm('削除してもよろしいですか？');
-    if(!result) return;
+    if (!result) return;
     document.getElementById(id).remove();
 }
 
