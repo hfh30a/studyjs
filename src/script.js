@@ -1,5 +1,5 @@
 function addData() {
-    var error = validateField();
+    const error = validateField();
     if (error !== "") {
         alert(error);
         return;
@@ -14,8 +14,8 @@ function resetData() {
 }
 
 function validateField() {
-    var error = "";
-    var FIXED_MESSAGE = "は必須項目です"
+    let error = "";
+    const FIXED_MESSAGE = "は必須項目です"
 
     if (document.getElementById('username').value === "") {
         error += "名前" + FIXED_MESSAGE;
@@ -29,9 +29,9 @@ function validateField() {
 }
 
 function createNode() {
-    var data = document.getElementById("data");
-    var div = document.createElement("div");
-    var id = "data" + getFieldId(data);
+    const data = document.getElementById("data");
+    const div = document.createElement("div");
+    const id = "data" + getFieldId(data);
     div.setAttribute("id", id);
     data.appendChild(div);
     insertField(div);
@@ -39,10 +39,10 @@ function createNode() {
 }
 
 function insertField(div) {
-    var label = document.createElement("label");
+    let label = document.createElement("label");
     label.innerText = "名前 : "
     div.appendChild(label);
-    var span = document.createElement("span");
+    let span = document.createElement("span");
     span.innerText = document.getElementById("username").value;
     span.setAttribute("class", "name");
     div.appendChild(span);
@@ -84,18 +84,18 @@ function editData(id) {
 }
 
 function deleteData(id) {
-    var result = window.confirm('削除してもよろしいですか？');
+    const result = window.confirm('削除してもよろしいですか？');
     if(!result) return;
     document.getElementById(id).remove();
 }
 
 function getFieldId(data) {
-    var list = [];
-    for (var i = 0; i < data.childNodes.length; i++) {
-        var id = Number(('' + data.childNodes[i].id).replace("data", ''));
+    const list = [];
+    for (let i = 0; i < data.childNodes.length; i++) {
+        const id = Number(('' + data.childNodes[i].id).replace("data", ''));
         list.push(id);
     }
-    var result = 1;
+    let result = 1;
     while (list.includes(result)) {
         result++;
     }
