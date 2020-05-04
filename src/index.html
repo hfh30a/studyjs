@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>JavaScriptの勉強</title>
     <meta charset="utf-8">
-    <script type="text/javascript" src="index.js"></script>
-  </head>
-  <body>
-    <input type="button" value="ボタン" onclick="hello();">
-  </body>
+    <script type="text/javascript" src="script.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div id="">
+        <label>名前 : <input type="text" id="username" name="username"><span class="fixed"> (※)</span></label>
+    </div>
+    <div>
+        <label>年齢 : <input type="text" id="age" name="age"><span class="fixed"> (※)</span></label>
+    </div>
+    <div>
+        <label>備考 : <input type="text" id="remark" name="remark"></label>
+    </div>
+    <div class="fixed">
+        (※) 必須項目
+    </div>
+    <input type="button" name="button" value="追加" onclick="addData();">
+    <input type="button" name="button" value="リセット" onclick="resetData();">
+    <div id="data"></div>
+</body>
 </html>
