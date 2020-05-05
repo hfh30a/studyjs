@@ -8,7 +8,7 @@
 </head>
 <body>
     <div id="">
-        <label>名前 : <input type="text" id="username" name="username"><span class="fixed"> (※)</span></label>
+        <label>名前 : <input type="text" id="name" name="name"><span class="fixed"> (※)</span></label>
     </div>
     <div>
         <label>年齢 : <input type="text" id="age" name="age"><span class="fixed"> (※)</span></label>
@@ -19,8 +19,8 @@
     <div class="fixed">
         (※) 必須項目
     </div>
-    <input type="button" name="button" value="追加" onclick="addData();">
-    <input type="button" name="button" value="リセット" onclick="resetData();">
+    <input type="button" id="add-button" name="button" value="追加" onclick="addData();" />
+    <input type="button" id="reset-button" name="button" value="リセット" onclick="resetData();" />
     <div id="data"></div>
 </body>
 </html>
