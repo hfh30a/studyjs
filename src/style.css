@@ -1,3 +1,16 @@
+hr {
+    width: 30%;
+    float: left;
+}
+
+#field-search .age input[type="text"] {
+    width: 30px;
+}
+
 .fixed {
     color: red;
+}
+
+.clear {
+    clear: both;
 }

@@ -1,9 +1,5 @@
 function addData() {
-    const error = validateField();
-    if (error !== "") {
-        alert(error);
-        return;
-    }
+    if (!validateField()) return;
     createNode();
 }
 
@@ -31,18 +27,21 @@ function validateField() {
         error += "年齢" + FIXED_MESSAGE;
     }
 
-    if(error !== "") return error;
+    if (error !== "") {
+        alert(error);
+        return false;
+    };
 
-    if(!Number.isInteger(Number(age))){
-        error += "年齢には整数を入力してください";
-        return error;
+    if (!Number.isInteger(Number(age))) {
+        alert("年齢には整数を入力してください");
+        return false;
     }
-    if(age < 0) {
-        error += "年齢には有効な数値を入力してください";
-        return error;
+    if (age < 0) {
+        alert("年齢には有効な数値を入力してください");
+        return false;
     }
 
-    return error;
+    return true;
 }
 
 function createNode() {
@@ -83,11 +82,7 @@ function editData(id) {
 }
 
 function putData(id) {
-    const error = validateField();
-    if (error !== "") {
-        alert(error);
-        return;
-    }
+    if (!validateField()) return;
 
     const data = document.getElementById(id);
     data.getElementsByClassName("name")[0].innerHTML = document.getElementById("name").value;
@@ -130,4 +125,10 @@ function getFieldId(data) {
         result++;
     }
     return result;
+}
+
+function searchData() {
+    const name = document.getElementById("search-name").value;
+    const minAge = document.getElementById("search-age-min").value;
+    const maxAge = document.getElementById("search-age-max").value;
 }

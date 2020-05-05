@@ -7,20 +7,42 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <div id="">
-        <label>名前 : <input type="text" id="name" name="name"><span class="fixed"> (※)</span></label>
+    <div>
+        <label>名前 : </label><input type="text" id="name" name="name"><span class="fixed"> (※)</span>
     </div>
     <div>
-        <label>年齢 : <input type="text" id="age" name="age"><span class="fixed"> (※)</span></label>
+        <label>年齢 : </label><input type="text" id="age" name="age"><span class="fixed"> (※)</span>
     </div>
     <div>
-        <label>備考 : <input type="text" id="remark" name="remark"></label>
+        <label>備考 : </label><input type="text" id="remark" name="remark">
     </div>
     <div class="fixed">
         (※) 必須項目
     </div>
-    <input type="button" id="add-button" name="button" value="追加" onclick="addData();" />
-    <input type="button" id="reset-button" name="button" value="リセット" onclick="resetData();" />
-    <div id="data"></div>
+    <div>
+        <input type="button" id="add-button" name="button" value="追加" onclick="addData();" />
+        <input type="button" id="reset-button" name="button" value="リセット" onclick="resetData();" />
+    </div>
+    <hr>
+    <div class="clear">
+        <div>検索条件</div>
+    </div>
+    <div id="field-search">
+        <div>
+            <label>名前 : </label>
+            <input type="text" id="search-name" name="search-name">
+        </div>
+        <div class="age">
+            <label>年齢 : </label>
+            <input type="text" id="search-age-min" name="search-age-min">
+            <label>　〜　</label>
+            <input type="text" id="search-age-max" name="search-age-max">
+        </div>
+        <div>
+            <input type="button" id="search-button" name="button" value="検索" onclick="searchData();" />
+        </div>
+    </div>
+    <hr>
+    <div id="data" class="clear"></div>
 </body>
 </html>
