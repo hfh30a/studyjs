@@ -4,9 +4,9 @@ function addData() {
 }
 
 function resetData() {
-    document.getElementById('name').value = "";
-    document.getElementById('age').value = "";
-    document.getElementById('remark').value = "";
+    document.getElementById("name").value = "";
+    document.getElementById("age").value = "";
+    document.getElementById("remark").value = "";
     const addButton = document.getElementById("add-button");
     addButton.setAttribute("value", "追加");
     addButton.setAttribute("onclick", "addData();");
@@ -16,8 +16,8 @@ function resetData() {
 function validateField() {
     let error = "";
     const FIXED_MESSAGE = "は必須項目です"
-    const name = document.getElementById('name').value;
-    const age = document.getElementById('age').value;
+    const name = document.getElementById("name").value;
+    const age = document.getElementById("age").value;
 
     if (name === "") {
         error += "名前" + FIXED_MESSAGE;
@@ -115,7 +115,7 @@ function putData(id) {
 }
 
 function deleteData(id) {
-    const result = window.confirm('削除してもよろしいですか？');
+    const result = window.confirm("削除してもよろしいですか？");
     if (!result) return;
     document.getElementById(id).remove();
     resetData();
@@ -124,7 +124,7 @@ function deleteData(id) {
 function getFieldId(data) {
     const list = [];
     for (let i = 0; i < data.childNodes.length; i++) {
-        const id = Number(('' + data.childNodes[i].id).replace("data", ''));
+        const id = Number(("" + data.childNodes[i].id).replace("data", ""));
         list.push(id);
     }
     let result = 1;
@@ -139,10 +139,6 @@ function searchData() {
     const minAge = document.getElementById("search-age-min").value;
     const maxAge = document.getElementById("search-age-max").value;
 
-    if (name === "" && minAge === "" && maxAge === "") {
-        return;
-    }
-
     if (!checkAge(minAge)) return false;
     if (!checkAge(maxAge)) return false;
     if(minAge !== "" && maxAge !== "" && Number(minAge) > Number(maxAge)) {
@@ -151,7 +147,33 @@ function searchData() {
     }
 
     const data = document.getElementById("data");
-    console.log(data);
+    for (let i = 0; i < data.childNodes.length; i++) {
+        document.getElementById(data.childNodes[i].id).classList.remove("invisible");
+    }
+
+    if (name === "" && minAge === "" && maxAge === "") {
+        return;
+    }
+
+    for (let i = 0; i < data.childNodes.length; i++) {
+        const dataName = data.getElementsByClassName("name")[i].innerHTML;
+        const dataAge = data.getElementsByClassName("age")[i].innerHTML;
+        let isSearch = true;
+        if (name !== "" && dataName.indexOf(name) === -1) {
+            isSearch = false;
+        }
+        if(minAge !== "" && Number(dataAge) < Number(minAge)) {
+            isSearch = false;
+        }
+        if(maxAge !== "" && Number(maxAge) < Number(dataAge)) {
+            isSearch = false;
+        }
+        if(isSearch) {
+            document.getElementById(data.childNodes[i].id).classList.remove("invisible");
+        } else {
+            document.getElementById(data.childNodes[i].id).setAttribute("class", "invisible");
+        }
+    }
 }
 
 function searchDataReset() {
@@ -161,7 +183,6 @@ function searchDataReset() {
 
     const data = document.getElementById("data");
     for (let i = 0; i < data.childNodes.length; i++) {
-        const id = data.childNodes[i].id;
-        document.getElementById(id).classList.remove("invisible");
+        document.getElementById(data.childNodes[i].id).classList.remove("invisible");
     }
 }
