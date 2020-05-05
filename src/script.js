@@ -32,12 +32,19 @@ function validateField() {
         return false;
     };
 
+    if (!checkAge(age)) return false;
+
+    return true;
+}
+
+function checkAge(age) {
+    console.log(age);
     if (!Number.isInteger(Number(age))) {
-        alert("年齢には整数を入力してください");
+        alert("年齢には数値を入力してください");
         return false;
     }
     if (age < 0) {
-        alert("年齢には有効な数値を入力してください");
+        alert("年齢には0以上の整数を入力してください");
         return false;
     }
 
@@ -129,6 +136,13 @@ function getFieldId(data) {
 
 function searchData() {
     const name = document.getElementById("search-name").value;
-    const minAge = document.getElementById("search-age-min").value;
-    const maxAge = document.getElementById("search-age-max").value;
+    const minAge = Number(document.getElementById("search-age-min").value);
+    const maxAge = Number(document.getElementById("search-age-max").value);
+
+    if (!checkAge(minAge)) return false;
+    if (!checkAge(maxAge)) return false;
+    if(minAge > maxAge) {
+        alert("年齢の検索には有効な範囲を入力してください");
+        return;
+    }
 }
