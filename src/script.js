@@ -38,7 +38,6 @@ function validateField() {
 }
 
 function checkAge(age) {
-    console.log(age);
     if (!Number.isInteger(Number(age))) {
         alert("年齢には数値を入力してください");
         return false;
@@ -119,6 +118,7 @@ function deleteData(id) {
     const result = window.confirm('削除してもよろしいですか？');
     if (!result) return;
     document.getElementById(id).remove();
+    resetData();
 }
 
 function getFieldId(data) {
@@ -136,13 +136,32 @@ function getFieldId(data) {
 
 function searchData() {
     const name = document.getElementById("search-name").value;
-    const minAge = Number(document.getElementById("search-age-min").value);
-    const maxAge = Number(document.getElementById("search-age-max").value);
+    const minAge = document.getElementById("search-age-min").value;
+    const maxAge = document.getElementById("search-age-max").value;
+
+    if (name === "" && minAge === "" && maxAge === "") {
+        return;
+    }
 
     if (!checkAge(minAge)) return false;
     if (!checkAge(maxAge)) return false;
-    if(minAge > maxAge) {
+    if(minAge !== "" && maxAge !== "" && Number(minAge) > Number(maxAge)) {
         alert("年齢の検索には有効な範囲を入力してください");
         return;
+    }
+
+    const data = document.getElementById("data");
+    console.log(data);
+}
+
+function searchDataReset() {
+    document.getElementById("search-name").value = "";
+    document.getElementById("search-age-min").value = "";
+    document.getElementById("search-age-max").value = "";
+
+    const data = document.getElementById("data");
+    for (let i = 0; i < data.childNodes.length; i++) {
+        const id = data.childNodes[i].id;
+        document.getElementById(id).classList.remove("invisible");
     }
 }
