@@ -10,7 +10,7 @@ function resetData() {
     const addButton = document.getElementById("add-button");
     addButton.setAttribute("value", "追加");
     addButton.setAttribute("onclick", "addData();");
-    addButton.setAttribute("class", "addData();");
+    addButton.setAttribute("class", "btn btn-primary "+ "addData();");
 }
 
 function validateField() {
@@ -68,8 +68,8 @@ function insertField(div, id) {
         div.innerHTML += '<label class="remark-label"> 備考 : </label>';
         div.innerHTML += '<span class="remark">' + document.getElementById("remark").value + "</span>";
     }
-    div.innerHTML += '<input type="button" class="data-button-edit" name="button" value="編集" onclick="editData(' + "'" + id + "'" + ');">';
-    div.innerHTML += '<input type="button" class="data-button-delete" name="button" value="削除" onclick="deleteData(' + "'" + id + "'" + ');">';
+    div.innerHTML += '<input type="button" class="btn btn-primary btn-sm data-button-edit" name="button" value="編集" onclick="editData(' + "'" + id + "'" + ');">';
+    div.innerHTML += '<input type="button" class="btn btn-danger btn-sm data-button-delete" name="button" value="削除" onclick="deleteData(' + "'" + id + "'" + ');">';
 }
 
 function editData(id) {
@@ -84,7 +84,7 @@ function editData(id) {
     const addButton = document.getElementById("add-button");
     addButton.setAttribute("value", "編集");
     addButton.setAttribute("onclick", 'putData("' + id + '");');
-    addButton.setAttribute("class", id);
+    addButton.setAttribute("class", "btn btn-primary " + id);
 }
 
 function putData(id) {
@@ -99,8 +99,8 @@ function putData(id) {
             data.getElementsByClassName("data-button-delete")[0].remove();
             data.innerHTML += '<label class="remark-label"> 備考 : </label>';
             data.innerHTML += '<span class="remark">' + document.getElementById("remark").value + "</span>";
-            data.innerHTML += '<input type="button" class="data-button-edit" name="button" value="編集" onclick="editData(' + "'" + id + "'" + ');">';
-            data.innerHTML += '<input type="button" class="data-button-delete" name="button" value="削除" onclick="deleteData(' + "'" + id + "'" + ');">';
+            data.innerHTML += '<input type="button" class="btn btn-primary data-button-edit" name="button" value="編集" onclick="editData(' + "'" + id + "'" + ');">';
+            data.innerHTML += '<input type="button" class="btn btn-primary data-button-delete" name="button" value="削除" onclick="deleteData(' + "'" + id + "'" + ');">';
         }
     } else {
         if (document.getElementById("remark").value === "") {
